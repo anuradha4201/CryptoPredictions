@@ -33,7 +33,12 @@ def preprocess(dataset, cfg, logger=None):
     df = df.dropna()
     df1 = df.drop('Mean', axis=1)
     arr = np.array(df1)
-
+    # print("length of the mean:", len(np.array(df.Mean)))
+    # print("length of the low:", len(np.array(df.Low)))
+    # print("length of the high:", len(np.array(df.High)))
+    # print("length of the open:", len(np.array(df.open)))
+    # print("length of the close:", len(np.array(df.close)))
+    # print("length of the volume:", len(np.array(df.volume)))
     indicators = calculate_indicators(mean_=np.array(df.Mean), low_=np.array(df.Low),
                                       high_=np.array(df.High), open_=np.array(df.open),
                                       close_=np.array(df.close), volume_=np.array(df.volume))

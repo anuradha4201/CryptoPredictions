@@ -126,26 +126,26 @@ def add_indicators_to_dataset(indicators, indicators_names, dates, mean_):
     return new_data, new_dates
 
 
-@overload(np.clip)
-def np_clip(a, a_min, a_max, out=None):
-    """
-    Numba Overload of np.clip
-    :type a: np.ndarray
-    :type a_min: int
-    :type a_max: int
-    :type out: np.ndarray
-    :rtype: np.ndarray
-    """
-    if out is None:
-        out = np.empty_like(a)
-    for i in range(len(a)):
-        if a[i] < a_min:
-            out[i] = a_min
-        elif a[i] > a_max:
-            out[i] = a_max
-        else:
-            out[i] = a[i]
-    return out
+# @overload(np.clip)
+# def np_clip(a, a_min, a_max, out=None):
+#     """
+#     Numba Overload of np.clip
+#     :type a: np.ndarray
+#     :type a_min: int
+#     :type a_max: int
+#     :type out: np.ndarray
+#     :rtype: np.ndarray
+#     """
+#     if out is None:
+#         out = np.empty_like(a)
+#     for i in range(len(a)):
+#         if a[i] < a_min:
+#             out[i] = a_min
+#         elif a[i] > a_max:
+#             out[i] = a_max
+#         else:
+#             out[i] = a[i]
+#     return out
 
 
 @jit(nopython=True)
