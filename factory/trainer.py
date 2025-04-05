@@ -1,4 +1,5 @@
 import logging
+from re import X
 import time
 import gc
 
@@ -8,10 +9,11 @@ from os.path import join
 
 
 class Trainer:
-    def __init__(self, args, train_dataset, valid_dataset, model):
+    def __init__(self, args, X, y, valid_dataset, model):
         self.args = args
         self.model = model
-        self.train_dataset = train_dataset
+        self.train_dataset = X
+        self.train_target = y
         self.valid_dataset = valid_dataset
         self.use_validation = False if valid_dataset is None else True
 
@@ -19,7 +21,7 @@ class Trainer:
         logger.info("Training started.")
         time0 = time.time()
 
-        self.model.fit(self.train_dataset)
+        self.model.fit(self.train_dataset, self.train_target)
 
         logger.info("-" * 100)
         logger.info('Training is completed in %.2f seconds.' % (time.time() - time0))

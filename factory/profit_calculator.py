@@ -33,7 +33,7 @@ class ProfitCalculator:
         final.to_csv(address, encoding='utf-8', index=False)
 
     def create_dataframe(self):
-        arr = np.row_stack((self.predicted_low, self.predicted_high, self.mean_prediction)).T
+        arr = np.column_stack((self.predicted_low, self.predicted_high, self.mean_prediction))
         predicteds = pd.DataFrame(arr, columns=['predicted_low', 'predicted_high', 'predicted_mean'])
         self.original.reset_index(drop=True, inplace=True)
         df = pd.concat([self.original, predicteds], axis=1)

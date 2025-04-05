@@ -4,6 +4,6 @@ defaults:
 
 type: lstm
 hidden_dim: 256
-epochs: 50
+epochs: 10
 is_regression: True
 
